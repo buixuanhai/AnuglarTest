@@ -27,86 +27,86 @@
   <form action="">
     <ngb-tabset>
 
-      <ngb-tab title="Experience" id="experience">
+
+
+      <!--Personal and Education-->
+      <ngb-tab title="Personal and Education" id="personal-and-education">
         <template ngbTabContent>
-       
-          <hr>
 
-          <app-language [language]="language" *ngFor="let language of languages"></app-language>
+          <!--Personal information-->
+          <div [formGroup]="personForm">
+            <h4 style="margin-top: 40px;">Personal information</h4>
+            <hr>
 
-          <!--<label class="checkbox-inline">
-           <input type="checkbox" name="python" id="python" value="python" [(ngModel)]="isPython"> Python
-          </label>
-
-          <div *ngIf="isPython" style="padding-left: 30px">
-            <div *ngFor="let fr of pythonFramework">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="{{fr}}" id="{{fr}}" value="{{fr}}"> {{fr}} 
-              </label>
-              <br>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" name="name" id="name" aria-describedby="name" placeholder="Enter name" formControlName="name">
             </div>
 
-            <button type="button" class="btn btn-default">Add</button>
-          </div>
-          <hr>-->
+            <div class="form-group">
+              <label for="name">Birthday</label>
 
-        </template>
-      </ngb-tab>
-
-      <ngb-tab title="Personal" id="personal">
-        <template ngbTabContent>
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" name="name" id="name" aria-describedby="name" placeholder="Enter name">
-          </div>
-
-          <div class="form-group">
-            <label for="name">Birthday</label>
-
-            <div class="input-group">
-              <input class="form-control" placeholder="dd-mm-yyyy" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-              <div class="input-group-addon" (click)="d.toggle()">
-                <!--<img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />-->
-                Choose
+              <div class="input-group">
+                <input class="form-control" placeholder="dd-mm-yyyy" name="dp" ngbDatepicker #d="ngbDatepicker" formControlName="birthday">
+                <div class="input-group-addon" (click)="d.toggle()">
+                  Choose
+                </div>
               </div>
             </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="Enter email"
+                formControlName="email">
+
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="text" class="form-control" name="phone" id="phone" aria-describedby="helpId" placeholder="Phone number" formControlName="phone">
+            </div>
+
+            <div class="form-group">
+              <label for="skype">Skype</label>
+              <input type="text" class="form-control" name="skype" id="skype" aria-describedby="helpId" placeholder="Skype" formControlName="skype">
+            </div>
+
+            <hr>
+            <h4 style="margin-top: 40px;">Education</h4>
+            <hr>
+
+            <div formArrayName="educations" *ngFor="let education of">
+              <div formControlName="0">
+                <label for="school">School, university, certificates: {{i}}</label>
+                <textarea class="form-control" name="school" id="school" rows="3"></textarea>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-default" (click)="addEducation()">Add</button>
+            <hr>
+            <button type="button" class="btn btn-primary float-right" (click)="validateEducation()">Next</button>
           </div>
-
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="Enter email">
-          </div>
-
-          <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="text" class="form-control" name="phone" id="phone" aria-describedby="helpId" placeholder="Phone number">
-          </div>
-
-          <div class="form-group">
-            <label for="skype">Skype</label>
-            <input type="text" class="form-control" name="skype" id="skype" aria-describedby="helpId" placeholder="Skype">
-          </div>
-
-          <hr>
-
-          <button type="button" class="btn btn-primary float-right" (click)="validatePersonal()">Next</button>
         </template>
       </ngb-tab>
-      <ngb-tab title="Education" id="education">
+
+      <!-- Experience -->
+      <ngb-tab title="Experience" id="experience">
         <template ngbTabContent>
 
-          <div class="form-group">
-            <label for="school">School, university, certificates:</label>
-            <textarea class="form-control" name="school" id="school" rows="3"></textarea>
-          </div>
+          <h5 style="margin-top: 30px">Languages</h5>
+          <hr>
+          <app-language [language]="language" *ngFor="let language of languages"></app-language>
 
-          <div class="form-group">
-            <label for="school">School, university, certificates:</label>
-            <textarea class="form-control" name="school" id="school" rows="3" (click)="addSchoolInput()"></textarea>
-          </div>
 
-          <button type="button" class="btn btn-default" (click)="addSchoolInput()">Add</button>
-          <button type="button" class="btn btn-primary float-right" (click)="validateEducation()">Next</button>
+        </template>
+      </ngb-tab>
+
+      <!-- Project -->
+      <ngb-tab title="Project" id="project">
+        <template ngbTabContent>
+          <h5 style="margin-top: 30px">Projects</h5>
+          <app-project *ngFor="let pr of projects" [project]="pr"></app-project>
+          <button type="button" class="btn btn-primary">Add</button>
 
         </template>
       </ngb-tab>

@@ -3,17 +3,21 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LanguageComponent } from './language/language.component';
+import { ProjectComponent } from './project/project.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LanguageComponent
+    LanguageComponent,
+    ProjectComponent
   ],
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpModule
   ],
