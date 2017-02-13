@@ -75,10 +75,10 @@
             <h4 style="margin-top: 40px;">Education</h4>
             <hr>
 
-            <div formArrayName="educations" *ngFor="let education of">
-              <div formControlName="0">
-                <label for="school">School, university, certificates: {{i}}</label>
-                <textarea class="form-control" name="school" id="school" rows="3"></textarea>
+            <div formArrayName="educations" *ngFor="let education of educations.controls; let i = index">
+              <div [formGroupName]="i">
+                <label attr.for="{{ 'education' + i}}">School, university, certificates: {{i}}</label>
+                <textarea class="form-control" name="school" id="{{ 'education' + i}}" rows="3"></textarea>
               </div>
             </div>
 

@@ -84,12 +84,13 @@ export class AppComponent {
   }
 
   addEducation() {
-    console.log(this.person.educations.length);
+    this.educations.push(this.buildEducation());
   }
 
   get educations(): FormArray {
     return <FormArray>this.personForm.get('educations');
   }
+
 
   validatePersonal() {
     console.log("Validate personal >>");
