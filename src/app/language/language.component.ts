@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Language } from '../models/language';
+import { Framework } from '../models/framework';
 
 @Component({
   selector: 'app-language',
@@ -9,7 +11,14 @@ export class LanguageComponent implements OnInit {
 
   constructor() { }
 
+  @Input() frameworks: Framework[];
+
+  @Input() language: Language;
+
+  isSelected: boolean = false;
+
   ngOnInit() {
+    
   }
 
 }

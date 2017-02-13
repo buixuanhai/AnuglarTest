@@ -1,3 +1,31 @@
-<p>
-  language works!
-</p>
+<label class="checkbox-inline">
+  <input type="checkbox" name="{{language.name}}" id="{{language.name}}" value="{{language.name}}" [(ngModel)]="language.isSelected"> {{language.name}}
+</label>
+
+<div *ngIf="language.isSelected" style="padding-left: 30px">
+  <!-- Loop through .Net framework-->
+  <table class="table">
+    <tbody>
+      <tr *ngFor="let fr of language.frameworks">
+        <td>
+          <label class="checkbox-inline">
+            <input type="checkbox" name="{{fr.name}}" id="{{fr.name}}" value="{{fr.name}}" [(ngModel)]="fr.isSelected"> {{fr.name}} 
+          </label>
+        </td>
+        <td>
+          <input  type="text" class="form-control" name="{{fr.name}}-txt" id="{{fr.name}}-txt"
+           aria-describedby="helpId" placeholder="Hours of experience"
+           [(ngModel)]="fr.hoursOfExperience" 
+           *ngIf="fr.isSelected">
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+  <button *ngIf="language.frameworks.lenght > 0 " type="button" class="btn btn-default">Add</button>
+
+  <pre>{{language | json }}</pre>
+</div>
+
+<hr>
+

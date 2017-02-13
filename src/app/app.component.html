@@ -29,73 +29,16 @@
 
       <ngb-tab title="Experience" id="experience">
         <template ngbTabContent>
-
-          <app-language></app-language>
-
-          <!-- Html/css -->
-          <label class="checkbox-inline" style="margin-top: 40px;">
-           <input type="checkbox" name="htmlcss" id="htmlcss" value="checkedValue" > HTML/CSS
-         </label>
-          <!-- End Html/css -->
-
+       
           <hr>
 
-          <!-- Javascript -->
-          <label class="checkbox-inline">
-           <input type="checkbox" name="javascript" id="javascript" value="javascript" [(ngModel)]="isJavascript"> Javascript
-          </label>
+          <app-language [language]="language" *ngFor="let language of languages"></app-language>
 
-          <div *ngIf="isJavascript" style="padding-left: 30px">
-            <!-- Loop through js framework-->
-            <div *ngFor="let fr of javascriptFramework">
-              <table class="table">
-                  <tr>
-                    <td>
-                      <label class="checkbox-inline">
-                        <input type="checkbox" name="{{fr}}" id="{{fr}}" value="{{fr}}"> {{fr}} 
-                      </label>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="{{fr}}-input" id="{{fr}}-input" aria-describedby="helpId" placeholder="Hours of experiences">
-                    </td>
-                  </tr>
-              </table>
-            
-              <br>
-            </div>
-
-            <button type="button" class="btn btn-default">Add</button>
-          </div>
-          <hr>
-          <!-- End javascript -->
-
-
-          <!-- .Net frameworks-->
-          <label class="checkbox-inline">
-           <input type="checkbox" name="dotnet" id="dotnet" value="dotnet" [(ngModel)]="isDotNet"> .Net frameworks
-          </label>
-
-          <div *ngIf="isDotNet" style="padding-left: 30px">
-            <!-- Loop through .Net framework-->
-            <div *ngFor="let fr of netFramework">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="{{fr}}" id="{{fr}}" value="{{fr}}"> {{fr}} 
-              </label>
-              <br>
-            </div>
-
-            <button type="button" class="btn btn-default">Add</button>
-          </div>
-          <hr>
-          <!-- End .Net frameworks-->
-
-          <!-- Python -->
-          <label class="checkbox-inline">
+          <!--<label class="checkbox-inline">
            <input type="checkbox" name="python" id="python" value="python" [(ngModel)]="isPython"> Python
           </label>
 
           <div *ngIf="isPython" style="padding-left: 30px">
-            <!-- Loop through Python framework-->
             <div *ngFor="let fr of pythonFramework">
               <label class="checkbox-inline">
                 <input type="checkbox" name="{{fr}}" id="{{fr}}" value="{{fr}}"> {{fr}} 
@@ -105,31 +48,7 @@
 
             <button type="button" class="btn btn-default">Add</button>
           </div>
-          <hr>
-          <!-- End Python -->
-
-          <!-- Ruby -->
-          <label class="checkbox-inline">
-           <input type="checkbox" name="python" id="python" value="python" [(ngModel)]="isPython"> Python
-          </label>
-
-          <div *ngIf="isPython" style="padding-left: 30px">
-            <!-- Loop through Python framework-->
-            <div *ngFor="let fr of pythonFramework">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="{{fr}}" id="{{fr}}" value="{{fr}}"> {{fr}} 
-              </label>
-              <br>
-            </div>
-
-            <button type="button" class="btn btn-default">Add</button>
-          </div>
-          <hr>
-
-          <!-- End Ruby -->
-
-
-
+          <hr>-->
 
         </template>
       </ngb-tab>
