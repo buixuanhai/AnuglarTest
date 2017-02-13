@@ -1,3 +1,199 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+  <nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Navbar</a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+  </nav>
+
+
+  <h2 style="margin-top: 100px;" class="text-center">Job Application Wizard</h2>
+  <hr/>
+
+  <form action="">
+    <ngb-tabset>
+
+      <ngb-tab title="Experience" id="experience">
+        <template ngbTabContent>
+
+          <app-language></app-language>
+
+          <!-- Html/css -->
+          <label class="checkbox-inline" style="margin-top: 40px;">
+           <input type="checkbox" name="htmlcss" id="htmlcss" value="checkedValue" > HTML/CSS
+         </label>
+          <!-- End Html/css -->
+
+          <hr>
+
+          <!-- Javascript -->
+          <label class="checkbox-inline">
+           <input type="checkbox" name="javascript" id="javascript" value="javascript" [(ngModel)]="isJavascript"> Javascript
+          </label>
+
+          <div *ngIf="isJavascript" style="padding-left: 30px">
+            <!-- Loop through js framework-->
+            <div *ngFor="let fr of javascriptFramework">
+              <table class="table">
+                  <tr>
+                    <td>
+                      <label class="checkbox-inline">
+                        <input type="checkbox" name="{{fr}}" id="{{fr}}" value="{{fr}}"> {{fr}} 
+                      </label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="{{fr}}-input" id="{{fr}}-input" aria-describedby="helpId" placeholder="Hours of experiences">
+                    </td>
+                  </tr>
+              </table>
+            
+              <br>
+            </div>
+
+            <button type="button" class="btn btn-default">Add</button>
+          </div>
+          <hr>
+          <!-- End javascript -->
+
+
+          <!-- .Net frameworks-->
+          <label class="checkbox-inline">
+           <input type="checkbox" name="dotnet" id="dotnet" value="dotnet" [(ngModel)]="isDotNet"> .Net frameworks
+          </label>
+
+          <div *ngIf="isDotNet" style="padding-left: 30px">
+            <!-- Loop through .Net framework-->
+            <div *ngFor="let fr of netFramework">
+              <label class="checkbox-inline">
+                <input type="checkbox" name="{{fr}}" id="{{fr}}" value="{{fr}}"> {{fr}} 
+              </label>
+              <br>
+            </div>
+
+            <button type="button" class="btn btn-default">Add</button>
+          </div>
+          <hr>
+          <!-- End .Net frameworks-->
+
+          <!-- Python -->
+          <label class="checkbox-inline">
+           <input type="checkbox" name="python" id="python" value="python" [(ngModel)]="isPython"> Python
+          </label>
+
+          <div *ngIf="isPython" style="padding-left: 30px">
+            <!-- Loop through Python framework-->
+            <div *ngFor="let fr of pythonFramework">
+              <label class="checkbox-inline">
+                <input type="checkbox" name="{{fr}}" id="{{fr}}" value="{{fr}}"> {{fr}} 
+              </label>
+              <br>
+            </div>
+
+            <button type="button" class="btn btn-default">Add</button>
+          </div>
+          <hr>
+          <!-- End Python -->
+
+          <!-- Ruby -->
+          <label class="checkbox-inline">
+           <input type="checkbox" name="python" id="python" value="python" [(ngModel)]="isPython"> Python
+          </label>
+
+          <div *ngIf="isPython" style="padding-left: 30px">
+            <!-- Loop through Python framework-->
+            <div *ngFor="let fr of pythonFramework">
+              <label class="checkbox-inline">
+                <input type="checkbox" name="{{fr}}" id="{{fr}}" value="{{fr}}"> {{fr}} 
+              </label>
+              <br>
+            </div>
+
+            <button type="button" class="btn btn-default">Add</button>
+          </div>
+          <hr>
+
+          <!-- End Ruby -->
+
+
+
+
+        </template>
+      </ngb-tab>
+
+      <ngb-tab title="Personal" id="personal">
+        <template ngbTabContent>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" id="name" aria-describedby="name" placeholder="Enter name">
+          </div>
+
+          <div class="form-group">
+            <label for="name">Birthday</label>
+
+            <div class="input-group">
+              <input class="form-control" placeholder="dd-mm-yyyy" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-addon" (click)="d.toggle()">
+                <!--<img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />-->
+                Choose
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="Enter email">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" name="phone" id="phone" aria-describedby="helpId" placeholder="Phone number">
+          </div>
+
+          <div class="form-group">
+            <label for="skype">Skype</label>
+            <input type="text" class="form-control" name="skype" id="skype" aria-describedby="helpId" placeholder="Skype">
+          </div>
+
+          <hr>
+
+          <button type="button" class="btn btn-primary float-right" (click)="validatePersonal()">Next</button>
+        </template>
+      </ngb-tab>
+      <ngb-tab title="Education" id="education">
+        <template ngbTabContent>
+
+          <div class="form-group">
+            <label for="school">School, university, certificates:</label>
+            <textarea class="form-control" name="school" id="school" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="school">School, university, certificates:</label>
+            <textarea class="form-control" name="school" id="school" rows="3" (click)="addSchoolInput()"></textarea>
+          </div>
+
+          <button type="button" class="btn btn-default" (click)="addSchoolInput()">Add</button>
+          <button type="button" class="btn btn-primary float-right" (click)="validateEducation()">Next</button>
+
+        </template>
+      </ngb-tab>
+
+    </ngb-tabset>
+  </form>
+
+
+</div>
