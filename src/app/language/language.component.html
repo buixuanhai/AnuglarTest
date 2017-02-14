@@ -13,7 +13,7 @@
                 <div class="col-sm-4">
                   <input type="checkbox" formControlName="isSelected"> {{ framework.get('name').value}}
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4" *ngIf="framework.get('isSelected').value">
                   <input type="text" class="form-control" formControlName="hoursOfExperience">
                 </div>
               </div>

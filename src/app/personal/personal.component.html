@@ -3,12 +3,12 @@
   <h4 style="margin-top: 40px;">Personal information</h4>
   <hr>
 
-  <div class="form-group">
+  <div class="form-group has-error" [ngClass]="{'has-danger': (personForm.get('name').touched || personForm.get('name').dirty) && !personForm.get('name').valid }">
     <label for="name">Name</label>
     <input type="text" class="form-control" name="name" id="name" aria-describedby="name" placeholder="Enter name" formControlName="name">
   </div>
 
-  <div class="form-group">
+  <div class="form-group" [ngClass]="{'has-danger': (personForm.get('birthday').touched || personForm.get('birthday').dirty) && !personForm.get('birthday').valid }">
     <label for="name">Birthday</label>
 
     <div class="input-group">
@@ -19,19 +19,19 @@
     </div>
   </div>
 
-  <div class="form-group">
+  <div class="form-group" [ngClass]="{'has-danger': (personForm.get('email').touched || personForm.get('email').dirty) && !personForm.get('email').valid }">
     <label for="email">Email</label>
     <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="Enter email"
       formControlName="email">
 
   </div>
 
-  <div class="form-group">
+  <div class="form-group" [ngClass]="{'has-danger': (personForm.get('phone').touched || personForm.get('phone').dirty) && !personForm.get('phone').valid }">
     <label for="phone">Phone</label>
     <input type="text" class="form-control" name="phone" id="phone" aria-describedby="helpId" placeholder="Phone number" formControlName="phone">
   </div>
 
-  <div class="form-group">
+  <div class="form-group" [ngClass]="{'has-danger': (personForm.get('skype').touched || personForm.get('skype').dirty) && !personForm.get('skype').valid }">
     <label for="skype">Skype</label>
     <input type="text" class="form-control" name="skype" id="skype" aria-describedby="helpId" placeholder="Skype" formControlName="skype">
   </div>
@@ -42,7 +42,8 @@
 
   <!-- Education -->
   <div formArrayName="educations" *ngFor="let education of educations.controls; let i = index">
-    <div [formGroupName]="i">
+    <div [formGroupName]="i" class="form-group"
+        [ngClass]="{'has-danger': (education.get('education').touched || education.get('education').dirty) && !education.get('education').valid }">
       <label attr.for="{{ 'education' + i}}">School, university, certificates: {{i}}</label>
       <textarea class="form-control" name="school" id="{{ 'education' + i}}" rows="3" formControlName="education"></textarea>
     </div>

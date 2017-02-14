@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-personal',
@@ -15,18 +15,18 @@ export class PersonalComponent implements OnInit {
 
   ngOnInit() {
     this.personForm = this.fb.group({
-      name: '',
-      birthday: '',
-      email: '',
-      phone: '',
-      skype: '',
+      name: ['', Validators.required],
+      birthday: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]],
+      phone: ['', [Validators.required, Validators.pattern('^\\d+$')]],
+      skype: ['', Validators.required],
       educations: this.fb.array([this.buildEducation()])
     });
   }
 
   buildEducation(): FormGroup {
     return this.fb.group({
-      education: ""
+      education: ['', Validators.required]
     });
   }
 

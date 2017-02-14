@@ -24,7 +24,6 @@ export class ProjectComponent implements OnInit {
       projects: this.fb.array(this.projectsInput.map(pr => this.buildProject()))
     });
 
-    console.log(this.projectsForm);
   }
 
   buildProject(): FormGroup {
