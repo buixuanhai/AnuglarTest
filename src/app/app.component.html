@@ -6,27 +6,27 @@
   <form action="">
     <ngb-tabset>
 
-      <!--Personal and Education-->
-      <ngb-tab title="Personal and Education" id="personal-and-education">
+      <!-- Experience -->
+      <ngb-tab title="Experience" id="experience">
         <template ngbTabContent>
-          <app-personal></app-personal>
+          <h5 style="margin-top: 30px">Languages</h5>
+          <hr>
+          <app-language [languagesInput]="languages"></app-language>
           <button type="button" class="btn btn-default" (click)="validateExperience()">
             Next
           </button>
         </template>
       </ngb-tab>
 
-      <!-- Experience -->
-      <ngb-tab title="Experience" id="experience">
+      <!--Personal and Education-->
+      <ngb-tab title="Personal and Education" id="personal-and-education">
         <template ngbTabContent>
-          <h5 style="margin-top: 30px">Languages</h5>
-          <hr>
-          <app-language [language]="language" *ngFor="let language of languages"></app-language>
-          <button type="button" class="btn btn-default" (click)="validateExperience()">
-            Next
-          </button>
+          <app-personal></app-personal>
+
         </template>
       </ngb-tab>
+
+
 
       <!-- Project -->
       <ngb-tab title="Project" id="project">

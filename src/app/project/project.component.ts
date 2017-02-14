@@ -15,24 +15,16 @@ export class ProjectComponent implements OnInit {
   @Input()
   projectsInput: Project[];
 
-  // projectForm: FormGroup;
 
   projectsForm: FormGroup;
 
   ngOnInit() {
-    // this.projectForm = this.fb.group({
-    //   name: '',
-    //   description: '',
-    //   teamSize: '',
-    //   roleInTeam: '',
-    //   descriptionOfJob: '',
-    //   github: ''
-    // });
 
     this.projectsForm = this.fb.group({
       projects: this.fb.array(this.projectsInput.map(pr => this.buildProject()))
     });
-    console.log(this.projectsInput.length);
+
+    console.log(this.projectsForm);
   }
 
   buildProject(): FormGroup {

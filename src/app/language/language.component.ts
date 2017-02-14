@@ -14,31 +14,40 @@ export class LanguageComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-  @Input() language: Language;
-  languageForm: FormGroup;
+  @Input() languagesInput: Language[];
 
-  test: any[];
+  languagesForm: FormGroup;
+
   ngOnInit() {
 
-    this.languageForm = this.fb.group({
-      isSelected: this.language.isSelected,
-      frameworks: this.fb.array(this.language.frameworks.map((fr) => this.buildFramework(fr)))
+    this.languagesForm = this.fb.group({
+      languages: this.fb.array(this.languagesInput.map(l => this.buildLanguage(l))),
+      test: "Hi Hai"
     });
+    
+  }
 
-    this.languageForm.valueChanges.subscribe(value => console.log(value));
-
+  buildLanguage(language: Language): FormGroup {
+    return this.fb.group({
+      name: language.name,
+      isSelected: language.isSelected,
+      frameworks: this.fb.array(language.frameworks.map(fr => this.buildFramework(fr)))
+    });
   }
 
   buildFramework(framework: Framework): FormGroup {
     return this.fb.group({
       name: framework.name,
       isSelected: framework.isSelected,
-      hourOfExperience: framework.hoursOfExperience
+      hoursOfExperience: framework.hoursOfExperience
     });
   }
 
-  get frameworks(): FormArray {
-    return <FormArray>this.languageForm.get('frameworks');
+  addFramework() {
+  }
+
+  get languages(): FormArray {
+    return <FormArray>this.languagesForm.get('languages');
   }
 
 

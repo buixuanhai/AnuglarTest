@@ -1,5 +1,6 @@
 <div [formGroup]="projectsForm">
   <div formArrayName="projects" *ngFor="let fr of projects.controls; let i=index">
+    <pre>{{projects.value | json }}</pre>
     <div [formGroupName]="i">
       <div class="card">
         <div class="card-block">
@@ -37,11 +38,14 @@
       </div>
     </div>
 
-    <pre> {{ fr.value | json }}</pre>
+    <hr>  
+
+    <!--<pre> {{ fr.value | json }}</pre>-->
 
   </div>
 </div>
 
-<button type="button" class="btn btn-primary" (click)="addProject()">Add</button>
-
+<button type="button" class="btn btn-default" (click)="addProject()">Add</button>
 <hr>
+<button type="button" class="btn btn-default" style="margin-bottom: 20px;">Previous</button>
+<button type="button" class="btn btn-primary float-right">Finish</button>

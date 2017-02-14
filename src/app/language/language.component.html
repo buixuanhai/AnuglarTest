@@ -1,6 +1,39 @@
+<div [formGroup]="languagesForm">
+  <!--<div formArrayName="languages" *ngFor="let language of languages.controls; let i=index">-->
 
+  <div formArrayName="languages" *ngFor="let language of languages.controls; let i=index">
+    <div [formGroupName]="i">
+      <div class="row">
+        <div class="col-sm-3">
+          <input type="checkbox" formControlName="isSelected"> {{ language.get('name').value }}
+        </div>
+        <div class="col-sm-9" *ngIf="language.get('isSelected').value">
+          <div formArrayName="frameworks" *ngFor="let framework of language.get('frameworks').controls, let i=index">
+            <div [formGroupName]="i">
+              <div class="row" style="margin-bottom: 5px;">
+                <div class="col-sm-4">
+                  <input type="checkbox" formControlName="isSelected"> {{ framework.get('name').value}}
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" formControlName="hoursOfExperience">
+                </div>
+              </div>
+            </div>
 
-<div [formGroup]="languageForm">
+          </div>
+          <button type="button" class="btn btn-default">Add</button>
+
+        </div>
+      </div>
+    </div>
+    <hr>
+  </div>
+
+</div>
+
+<!--<pre>{{ languagesForm.get('languages').value | json }}</pre>-->
+
+<!--<div [formGroup]="languageForm">
   <label class="checkbox-inline">
     <input type="checkbox" name="{{language.name}}" id="{{language.name}}" value="{{language.name}}" formControlName="isSelected"> {{language.name}}
   </label>
@@ -26,8 +59,8 @@
 
       </tbody>
     </table>
-    <button type="button" class="btn btn-default">Add</button>
+    <button type="button" class="btn btn-default" (click)="addFramework()">Add</button>
   </div>
-</div>
+</div>-->
 
 <hr>
