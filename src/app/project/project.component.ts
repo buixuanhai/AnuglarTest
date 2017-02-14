@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Project } from '../models/project';
+import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-project',
@@ -8,13 +9,49 @@ import { Project } from '../models/project';
 })
 export class ProjectComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
+
 
   @Input()
-  project: Project;
+  projectsInput: Project[];
+
+  // projectForm: FormGroup;
+
+  projectsForm: FormGroup;
 
   ngOnInit() {
-    this.project = new Project();
+    // this.projectForm = this.fb.group({
+    //   name: '',
+    //   description: '',
+    //   teamSize: '',
+    //   roleInTeam: '',
+    //   descriptionOfJob: '',
+    //   github: ''
+    // });
+
+    this.projectsForm = this.fb.group({
+      projects: this.fb.array(this.projectsInput.map(pr => this.buildProject()))
+    });
+    console.log(this.projectsInput.length);
+  }
+
+  buildProject(): FormGroup {
+    return this.fb.group({
+      name: '',
+      description: '',
+      teamSize: '',
+      roleInTeam: '',
+      descriptionOfJob: '',
+      github: ''
+    });
+  }
+
+  get projects(): FormArray {
+    return <FormArray>this.projectsForm.get('projects');
+  }
+
+  addProject() {
+    this.projects.push(this.buildProject());
   }
 
 }

@@ -75,6 +75,7 @@
             <h4 style="margin-top: 40px;">Education</h4>
             <hr>
 
+            <!-- Education -->
             <div formArrayName="educations" *ngFor="let education of educations.controls; let i = index">
               <div [formGroupName]="i">
                 <label attr.for="{{ 'education' + i}}">School, university, certificates: {{i}}</label>
@@ -97,6 +98,9 @@
           <hr>
           <app-language [language]="language" *ngFor="let language of languages"></app-language>
 
+          <button type="button" class="btn btn-default" (click)="validateExperience()">
+            Next
+          </button>
 
         </template>
       </ngb-tab>
@@ -105,8 +109,7 @@
       <ngb-tab title="Project" id="project">
         <template ngbTabContent>
           <h5 style="margin-top: 30px">Projects</h5>
-          <app-project *ngFor="let pr of projects" [project]="pr"></app-project>
-          <button type="button" class="btn btn-primary">Add</button>
+          <app-project [projectsInput]="projects"></app-project>
 
         </template>
       </ngb-tab>
@@ -114,5 +117,8 @@
     </ngb-tabset>
   </form>
 
+  <button type="button" class="btn btn-outline-default" (click)="save()">
+    Save
+  </button>
 
 </div>

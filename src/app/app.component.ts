@@ -25,7 +25,7 @@ export class AppComponent {
   person: Person;
   personForm: FormGroup;
 
-  // Second tab: technology
+  // Second tab: experience
   languages: Language[];
   javascriptFramework: string[] = ["jQuery", "Bootstrap", "Angular", "Ember", "Meteor", "Backbone"];
   netFramework: string[] = ["Webforms", "MVC", "Razor", "Webpages", "Orchard", "Umbraco", "DotNetNUke", "SharePoint"];
@@ -58,7 +58,7 @@ export class AppComponent {
 
 
 
-    // Second tab: technology
+    // Second tab: experience
     this.languages = [
       new Language("HTML/CSS", []),
       new Language("Javascript", this.javascriptFramework),
@@ -72,8 +72,6 @@ export class AppComponent {
     // Third tab: projects
     this.projects = [new Project(), new Project()];
   }
-
-
 
 
   // First tab: personal and education
@@ -100,5 +98,13 @@ export class AppComponent {
     console.log("Validate education >>");
   }
 
+  // Second tabs: experience
+  validateExperience() {
+    console.log();
+  }
+
+  save() {
+    console.log(JSON.stringify(this.personForm.value));
+  }
 
 }
