@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Project } from '../models/project';
-import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-project',
@@ -28,12 +28,13 @@ export class ProjectComponent implements OnInit {
 
   buildProject(): FormGroup {
     return this.fb.group({
-      name: '',
-      description: '',
-      teamSize: '',
-      roleInTeam: '',
-      descriptionOfJob: '',
-      github: ''
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      teamSize: ['', Validators.required],
+      roleInTeam: ['', Validators.required],
+      descriptionOfJob: ['', Validators.required],
+      github: ['', Validators.required],
+      // github: ['', [Validators.required, Validators.pattern('((git|ssh|http(s)?)|(git@[\w\.]+))(:(//)?)([\w\.@\:/\-~]+)(\.git)(/)?')]]
     });
   }
 

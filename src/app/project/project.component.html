@@ -1,36 +1,36 @@
 <div [formGroup]="projectsForm">
-  <div formArrayName="projects" *ngFor="let fr of projects.controls; let i=index">
+  <div formArrayName="projects" *ngFor="let project of projects.controls; let i=index">
     <!--<pre>{{projects.value | json }}</pre>-->
     <div [formGroupName]="i">
       <div class="card">
         <div class="card-block">
-          <div class="form-group">
-            <label for="project-name">Project name</label>
+          <div class="form-group" [ngClass]="{'has-danger': (project.get('name').touched || project.get('name').dirty) && !project.get('name').valid }">
+            <label for="project-name">Project name {{ project.valid | json }}</label>
             <input type="text" class="form-control" name="project-name" id="project-name" aria-describedby="helpId" placeholder="Project name"
               formControlName="name">
           </div>
 
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{'has-danger': (project.get('description').touched || project.get('description').dirty) && !project.get('description').valid }">
             <label for="description">Project descripion</label>
             <input type="text" class="form-control" name="description" id="description" aria-describedby="helpId" placeholder="Project description"
               formControlName="description">
           </div>
 
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{'has-danger': (project.get('teamSize').touched || project.get('teamSize').dirty) && !project.get('teamSize').valid }">
             <label for="teamsize">Teamsize</label>
             <input type="text" class="form-control" name="teamsize" id="teamsize" aria-describedby="helpId" placeholder="Teamsize" formControlName="teamSize">
           </div>
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{'has-danger': (project.get('roleInTeam').touched || project.get('roleInTeam').dirty) && !project.get('roleInTeam').valid }">
             <label for="role-in-team">Role in team</label>
             <input type="text" class="form-control" name="role-in-team" id="role-in-team" aria-describedby="helpId" placeholder="Role in team"
               formControlName="roleInTeam">
           </div>
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{'has-danger': (project.get('descriptionOfJob').touched || project.get('descriptionOfJob').dirty) && !project.get('descriptionOfJob').valid }">
             <label for="">Description of job</label>
             <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Job description" formControlName="descriptionOfJob">
           </div>
 
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{'has-danger': (project.get('github').touched || project.get('github').dirty) && !project.get('github').valid }">
             <label for="">Github</label>
             <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Github" formControlName="github">
           </div>
