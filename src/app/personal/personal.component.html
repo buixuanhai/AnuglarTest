@@ -1,0 +1,54 @@
+<!--Personal information-->
+<div [formGroup]="personForm">
+  <h4 style="margin-top: 40px;">Personal information</h4>
+  <hr>
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" name="name" id="name" aria-describedby="name" placeholder="Enter name" formControlName="name">
+  </div>
+
+  <div class="form-group">
+    <label for="name">Birthday</label>
+
+    <div class="input-group">
+      <input class="form-control" placeholder="dd-mm-yyyy" name="dp" ngbDatepicker #d="ngbDatepicker" formControlName="birthday">
+      <div class="input-group-addon" (click)="d.toggle()">
+        Choose
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="Enter email"
+      formControlName="email">
+
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="text" class="form-control" name="phone" id="phone" aria-describedby="helpId" placeholder="Phone number" formControlName="phone">
+  </div>
+
+  <div class="form-group">
+    <label for="skype">Skype</label>
+    <input type="text" class="form-control" name="skype" id="skype" aria-describedby="helpId" placeholder="Skype" formControlName="skype">
+  </div>
+
+  <hr>
+  <h4 style="margin-top: 40px;">Education</h4>
+  <hr>
+
+  <!-- Education -->
+  <div formArrayName="educations" *ngFor="let education of educations.controls; let i = index">
+    <div [formGroupName]="i">
+      <label attr.for="{{ 'education' + i}}">School, university, certificates: {{i}}</label>
+      <textarea class="form-control" name="school" id="{{ 'education' + i}}" rows="3"></textarea>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-default" (click)="addEducation()">Add</button>
+  <hr>
+  <button type="button" class="btn btn-primary float-right" (click)="validateEducation()">Next</button>
+</div>

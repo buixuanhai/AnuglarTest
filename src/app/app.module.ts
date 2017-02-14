@@ -7,12 +7,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LanguageComponent } from './language/language.component';
 import { ProjectComponent } from './project/project.component';
+import { PersonalComponent } from './personal/personal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LanguageComponent,
-    ProjectComponent
+    ProjectComponent,
+    PersonalComponent
   ],
   imports: [
     NgbModule.forRoot(),
