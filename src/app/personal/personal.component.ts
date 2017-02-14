@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@angular/forms';
 
 @Component({
@@ -9,7 +9,9 @@ import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@ang
 export class PersonalComponent implements OnInit {
 
   personForm: FormGroup;
-
+  
+  @Output()
+  changed = new EventEmitter<any>();
 
   constructor(private fb: FormBuilder) { }
 
@@ -22,6 +24,8 @@ export class PersonalComponent implements OnInit {
       skype: ['', Validators.required],
       educations: this.fb.array([this.buildEducation()])
     });
+
+    this.personForm.valueChanges.subscribe(value => this.changed.emit(value));
   }
 
   buildEducation(): FormGroup {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 
 import { Language } from '../models/language';
@@ -16,15 +16,18 @@ export class LanguageComponent implements OnInit {
 
   @Input() languagesInput: Language[];
 
+  @Output() changed = new EventEmitter<any>();
+
   languagesForm: FormGroup;
 
   ngOnInit() {
 
     this.languagesForm = this.fb.group({
-      languages: this.fb.array(this.languagesInput.map(l => this.buildLanguage(l))),
-      test: "Hi Hai"
+      languages: this.fb.array(this.languagesInput.map(l => this.buildLanguage(l)))
     });
-    
+
+    this.languagesForm.valueChanges.subscribe(value => this.changed.emit(value));
+
   }
 
   buildLanguage(language: Language): FormGroup {

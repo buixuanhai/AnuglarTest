@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
+import { Http } from '@angular/http';
 
 import { Framework } from './models/framework';
 import { Language } from './models/language';
 import { Person } from './models/person';
 import { Project } from './models/project';
+import { Submit } from './models/submit';
 
 
 const now = new Date();
@@ -23,6 +25,7 @@ export class AppComponent {
 
   // First tab: personal and education
   person: Person;
+  personValue: any;
 
 
   // Second tab: experience
@@ -34,11 +37,13 @@ export class AppComponent {
   javaFramework: string[] = ["JSP", "JSF", "Spring", "Vadiin", "Struts"];
   javaServers: string[] = ["Tomcat", "JBoss", "WebPhere", "Weblogic", "Glassfish"];
 
+  languagesValue: any;
+
   // Third tab: project
   projects: Project[];
+  projectsValue: any;
 
-
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: Http) {
 
   }
 
@@ -65,22 +70,23 @@ export class AppComponent {
 
 
 
-  toFirstTab() {
-
+  onPersonChanged(value) {
+    this.personValue = value;
+    console.log(value);
   }
 
-  toSecondTab() {
-
+  onExperienceChanged(value) {
+    this.languagesValue = value;
+    console.log(value);
   }
 
-
-  toLastTab() {
-
+  onProjectsChanged(value) {
+    this.projectsValue = value;
+    console.log(value);
   }
 
   submit() {
-    
+    let submitData = new Submit(this.personValue, this.languagesValue, this.projectsValue);
   }
-
 
 }

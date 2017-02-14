@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Project } from '../models/project';
 import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@angular/forms';
 
@@ -15,7 +15,8 @@ export class ProjectComponent implements OnInit {
   @Input()
   projectsInput: Project[];
 
-
+  @Output()
+  changed = new EventEmitter<any>();
   projectsForm: FormGroup;
 
   ngOnInit() {
@@ -23,6 +24,8 @@ export class ProjectComponent implements OnInit {
     this.projectsForm = this.fb.group({
       projects: this.fb.array(this.projectsInput.map(pr => this.buildProject()))
     });
+
+    this.projectsForm.valueChanges.subscribe((value) => this.changed.emit(value));
 
   }
 
