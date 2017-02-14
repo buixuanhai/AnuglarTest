@@ -68,8 +68,6 @@ export class AppComponent {
     this.projects = [new Project(), new Project()];
   }
 
-
-
   onPersonChanged(value) {
     this.personValue = value;
     console.log(value);
@@ -87,6 +85,10 @@ export class AppComponent {
 
   submit() {
     let submitData = new Submit(this.personValue, this.languagesValue, this.projectsValue);
+
+    this.http.post('http://localhost:51337/',
+      JSON.stringify(submitData)
+    );
   }
 
 }
