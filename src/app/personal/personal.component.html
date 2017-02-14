@@ -44,7 +44,7 @@
   <div formArrayName="educations" *ngFor="let education of educations.controls; let i = index">
     <div [formGroupName]="i">
       <label attr.for="{{ 'education' + i}}">School, university, certificates: {{i}}</label>
-      <textarea class="form-control" name="school" id="{{ 'education' + i}}" rows="3"></textarea>
+      <textarea class="form-control" name="school" id="{{ 'education' + i}}" rows="3" formControlName="education"></textarea>
     </div>
   </div>
 
@@ -52,3 +52,5 @@
   <hr>
   <button type="button" class="btn btn-primary float-right" (click)="validateEducation()">Next</button>
 </div>
+
+<pre> {{ personForm.value | json }}</pre>

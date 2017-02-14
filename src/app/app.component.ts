@@ -23,7 +23,7 @@ export class AppComponent {
 
   // First tab: personal and education
   person: Person;
-  personForm: FormGroup;
+
 
   // Second tab: experience
   languages: Language[];
@@ -47,16 +47,6 @@ export class AppComponent {
     // First tab: personal and education
     this.person = new Person();
 
-    this.personForm = this.fb.group({
-      name: '',
-      birthday: '',
-      email: '',
-      phone: '',
-      skype: '',
-      educations: this.fb.array([this.buildEducation()])
-    });
-
-
 
     // Second tab: experience
     this.languages = [
@@ -74,21 +64,6 @@ export class AppComponent {
   }
 
 
-  // First tab: personal and education
-  buildEducation(): FormGroup {
-    return this.fb.group({
-      education: ""
-    });
-  }
-
-  addEducation() {
-    this.educations.push(this.buildEducation());
-  }
-
-  get educations(): FormArray {
-    return <FormArray>this.personForm.get('educations');
-  }
-
 
   validatePersonal() {
     console.log("Validate personal >>");
@@ -104,7 +79,6 @@ export class AppComponent {
   }
 
   save() {
-    console.log(JSON.stringify(this.personForm.value));
   }
 
 }
