@@ -4,7 +4,15 @@
   <hr/>
 
   <form action="">
-    <ngb-tabset>
+    <ngb-tabset #t="ngbTabset">
+
+      <!--Personal and Education-->
+      <ngb-tab title="Personal and Education" id="personal">
+        <template ngbTabContent>
+          <app-personal></app-personal>
+          <button type="button" class="btn btn-primary float-right" (click)="t.select('experience')" style="margin-bottom: 30px">Next</button>
+        </template>
+      </ngb-tab>
 
       <!-- Experience -->
       <ngb-tab title="Experience" id="experience">
@@ -12,20 +20,10 @@
           <h5 style="margin-top: 30px">Languages</h5>
           <hr>
           <app-language [languagesInput]="languages"></app-language>
-          <button type="button" class="btn btn-default" (click)="validateExperience()">
-            Next
-          </button>
+          <button type="button" class="btn btn-primary" (click)="t.select('personal')">Previous</button>
+          <button type="button" class="btn btn-primary float-right" (click)="t.select('project')">Next</button>
         </template>
       </ngb-tab>
-
-      <!--Personal and Education-->
-      <ngb-tab title="Personal and Education" id="personal-and-education">
-        <template ngbTabContent>
-          <app-personal></app-personal>
-
-        </template>
-      </ngb-tab>
-
 
 
       <!-- Project -->
@@ -33,6 +31,8 @@
         <template ngbTabContent>
           <h5 style="margin-top: 30px">Projects</h5>
           <app-project [projectsInput]="projects"></app-project>
+          <button type="button" class="btn btn-primary" (click)="t.select('experience')">Previous</button>
+          <button type="button" class="btn btn-primary float-right" (click)="submit()" style="margin-bottom: 20px">Finish</button>
         </template>
       </ngb-tab>
 

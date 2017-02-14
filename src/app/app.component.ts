@@ -65,20 +65,22 @@ export class AppComponent {
 
 
 
-  validatePersonal() {
-    console.log("Validate personal >>");
+  toFirstTab() {
+
   }
 
-  validateEducation() {
-    console.log("Validate education >>");
+  toSecondTab() {
+
   }
 
-  // Second tabs: experience
-  validateExperience() {
-    console.log();
+
+  toLastTab() {
+
   }
 
-  save() {
+  submit() {
+    
   }
+
 
 }
